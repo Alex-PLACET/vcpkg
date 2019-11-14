@@ -6,3 +6,6 @@ Homepage: https://www.exiv2.org
 
 Feature: unicode
 Description: Compile with unicode support on windows
+
+Feature: video
+Description: Build video support into library

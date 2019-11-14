@@ -16,14 +16,32 @@ elseif()
     set(enable_win_unicode FALSE)
 endif()
 
+if("video" IN_LIST FEATURES)
+    set(enable_video TRUE)
+elseif()
+    set(enable_video FALSE)
+endif()
+
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
     PREFER_NINJA
     OPTIONS
-        -DEXIV2_ENABLE_WIN_UNICODE:BOOL=${enable_win_unicode}
         -DEXIV2_BUILD_EXIV2_COMMAND:BOOL=FALSE
         -DEXIV2_BUILD_UNIT_TESTS:BOOL=FALSE
-        -DEXIV2_BUILD_SAMPLES:BOOL=FALSE
+        -DEXIV2_ENABLE_XMP:BOOL=TRUE
+        -DEXIV2_ENABLE_LIBXMP:BOOL=TRUE
+        -DEXIV2_ENABLE_VIDEO:BOOL=${enable_video}
+        -DEXIV2_ENABLE_PNG:BOOL=TRUE
+        -DEXIV2_ENABLE_NLS:BOOL=TRUE
+        -DEXIV2_ENABLE_PRINTUCS2:BOOL=TRUE
+        -DEXIV2_ENABLE_LENSDATA:BOOL=TRUE
+        -DEXIV2_ENABLE_COMMERCIAL:BOOL=FALSE
+        -DEXIV2_ENABLE_BUILD_SAMPLES:BOOL=FALSE
+        -DEXIV2_ENABLE_BUILD_PO:BOOL=FALSE
+        -DEXIV2_ENABLE_WEBREADY:BOOL=FALSE
+        -DEXIV2_ENABLE_CURL:BOOL=TRUE
+        -DEXIV2_ENABLE_SSH:BOOL=TRUE
+        -DEXIV2_ENABLE_WIN_UNICODE:BOOL=${enable_win_unicode}
 )
 
 vcpkg_install_cmake()
